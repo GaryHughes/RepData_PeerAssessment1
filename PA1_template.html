@@ -108,15 +108,13 @@ max_interval &lt;- mean_steps_by_interval[max_row,]$interval</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.</li>
 </ol>
-<p>I have decided to fill in the missing values with the mean value for that</p>
+<p>I have decided to fill in the missing values with the mean number of steps for that interval.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Create a new dataset that is equal to the original dataset but with the missing data filled in.</li>
 </ol>
 <pre class="r"><code>library(plyr)
 impute.mean &lt;- function(x) replace(x, is.na(x), mean(x, na.rm = TRUE))
-complete_activity &lt;- ddply(activity, ~ interval, transform, steps = impute.mean(steps))
-
-#library(dplyr)</code></pre>
+complete_activity &lt;- ddply(activity, ~ interval, transform, steps = impute.mean(steps))</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?</li>
 </ol>
